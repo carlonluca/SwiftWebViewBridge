@@ -187,7 +187,7 @@ extension SwiftWebViewBridge {
                         if let responseData = swvbMsgData["responseData"] != nil ? swvbMsgData["responseData"] : NSNull() {
                             callback(responseData as! NSDictionary)
                         }
-                        self.jsCallbacks.removeValue(forKey: responseId)
+                        self.jsCallbacks.removeValueForKey(responseId)
                     }
                     else {
                         self.swvb_printLog(.ERROR("No matching callback closure for: \(swvbMsg)"))
@@ -352,7 +352,7 @@ extension SwiftWebViewBridge: UIWebViewDelegate {
         }
     }
     
-    public func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    public func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
         
         if let oriDelegate = self.oriDelegate as? UIWebViewDelegate {
             oriDelegate.webView?(webView, didFailLoadWithError: error)
